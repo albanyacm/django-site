@@ -1,4 +1,10 @@
 # Django settings for httpdocs project.
+try:
+    from local_settings import * 
+except ImportError:
+    pass
+
+
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -73,7 +79,8 @@ ADMIN_MEDIA_PREFIX = '/static/admin/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
-    # Put strings here, like "/home/html/static" or "C:/www/django/static".
+    os.path.join(BASEDIR, "static"),
+# Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
 )
@@ -104,6 +111,7 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'acm_web.urls'
 
 TEMPLATE_DIRS = (
+    os.path.join(BASEDIR, "templates")
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -144,9 +152,4 @@ LOGGING = {
         },
     }
 }
-
-try:
-    from local_settings import *
-except ImportError:
-    pass
 
